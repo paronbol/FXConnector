@@ -5,6 +5,7 @@ FXConnector POC
 version: 0.1
 author: Pau Ronda
 """
+# import requests
 
 class FXConnector():
     " Main class "
@@ -24,7 +25,21 @@ class FXConnector():
             item[2] = float(item[2]) * (1+self.bidmargin)
             item[3] = float(item[3]) * (1+self.bidmargin)
             data.append(item)
-        print(data)
+
+        jsondata = []
+        for d in data:
+            jsondata.append({
+                "id": d[0],
+                "instrumentName": d[1],
+                "bid": d[2],
+                "ask": d[3],
+                "timestamp": d[4]
+            })
+
+        # Printed instead of sending to the endpoint
+        # r = requests.post(url = self.endpoint, data = jsondata)
+        print("Simulating data sent to "+self.endpoint)
+        print(jsondata)
 
 if __name__ == "__main__":
 
