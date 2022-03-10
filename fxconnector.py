@@ -5,6 +5,7 @@ FXConnector POC
 version: 0.1
 author: Pau Ronda
 """
+import json
 # import requests
 
 class FXConnector():
@@ -40,6 +41,9 @@ class FXConnector():
         # r = requests.post(url = self.endpoint, data = jsondata)
         print("Simulating data sent to "+self.endpoint)
         print(jsondata)
+        with open("lastdata.json", "w") as outfile:
+            json.dump(jsondata, outfile)
+        outfile.close()
 
 if __name__ == "__main__":
 
